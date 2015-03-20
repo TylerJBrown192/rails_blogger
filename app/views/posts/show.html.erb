@@ -1,0 +1,12 @@
+<h1><%= @post.title %></h1>
+
+<p><%= @post.date %></p>
+
+<h4><%= @post.content %></h4>
+
+
+<p><%= link_to "Edit", edit_post_path(@post) %></p>
+<p><%= link_to "Delete", post_path(@post),
+                        :data => {:confirm => "Delete Post?",
+                                  :method => "delete"} %></p>
+<p><%= link_to "Return to your Homepage", posts_path %></p>
