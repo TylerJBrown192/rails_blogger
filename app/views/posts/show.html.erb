@@ -1,9 +1,29 @@
+<% content_for(:title, "Post | Blogger") %>
+
 <h1><%= @post.title %></h1>
 
-<p><%= @post.date %></p>
+<h4><%= @post.date %></h4>
 
-<h4><%= @post.content %></h4>
+<h5><%= @post.content %></h5>
 
+<% if @post.comments.any? %>
+  <p>Comments on this blog post:</p>
+  <ul>
+    <% @post.comments.each do |comment| %>
+    <li>
+      <%= comment.user_comment %> |
+      <%= link_to "Edit", edit_post_comment_path(@post, comment) %> |
+      <%= link_to "Delete", post_comment_path(@post, comment),
+                            :data => {:confirm => "Delete Comment?",
+                                      :method => "delete"} %>
+    </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>
+    There are no comments on this blog post.
+  </p>
+<% end %>
 
 <p><%= link_to "Edit", edit_post_path(@post) %></p>
 <p><%= link_to "Delete", post_path(@post),

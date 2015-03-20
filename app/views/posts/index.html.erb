@@ -1,7 +1,14 @@
+<% content_for(:title, "Posts | Blogger") %>
+
+
 <h1>Rails Blogger</h1>
 
 <ul>
   <% @posts.each do |post| %>
-    <li><%= link_to post.name, post_path(post) %> - <%= post.date %></li>
+    <li><%= link_to post.title, post_path(post) %> - <%= post.date %></li>
   <% end %>
 </ul>
+
+<p>
+  <%= link_to "Add a new Blog Post", new_post_path %>
+</p>
