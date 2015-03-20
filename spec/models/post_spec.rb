@@ -5,4 +5,5 @@ describe Post do
   it { should validate_presence_of :date }
   it { should validate_presence_of :content }
 
+  it { should have_many :comments }
 end
