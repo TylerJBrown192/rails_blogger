@@ -23,6 +23,10 @@
   <p>There are no comments on this blog post.</p>
 <% end %>
 
+<p>
+  <%= link_to "Comment on this Blogger's post", new_post_comment_path(@post) %>
+</p>
+
 <p><%= link_to "Edit", edit_post_path(@post) %></p>
 <p><%= link_to "Delete", post_path(@post),
                         :data => {:confirm => "Delete Post?",
