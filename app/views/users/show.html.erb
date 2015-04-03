@@ -1,0 +1,9 @@
+<% content_for(:title, "User | Blogger") %>
+
+<% if (user_signed_in?) && (current_user.id == @user.id) %>
+  <%= link_to "Add a new Blog Post!", new_user_post_path(@user)%>
+<% else %>
+  <h5>Thanks for checking out <%= @user.username %>'s page!</h5>
+<% end %>
+
+<%= render 'posts' %>

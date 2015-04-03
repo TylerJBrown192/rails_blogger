@@ -10,14 +10,16 @@ class PostsController < ApplicationController
   end
 
   def new
+    @user = User.find(params[:user_id])
     @post = Post.new
   end
 
   def create
-    @post = Post.new(post_params)
+    @user = User.find(params[:user_id])
+    @post = current_user.posts.new(post_params)
     if @post.save
       flash[:notice] = "Post successfully added!"
-      redirect_to post_path(@post)
+      redirect_to user_path(@user)
     else
       render :new
     end

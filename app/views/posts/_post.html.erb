@@ -1,0 +1,7 @@
+<ul>
+  <li><h5><%= link_to post.user.email, user_path(post.user) %></h5></li>
+    <ul>
+      <li><p><%= post.title %> | <%= post.date %></li>
+      <li><p><%= post.content %></p></li>
+    </ul>
+</ul>

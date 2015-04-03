@@ -1,14 +1,15 @@
 <% content_for(:title, "Posts | Blogger") %>
 
-
 <h1>Rails Blogger</h1>
 
-<ul>
-  <% @posts.each do |post| %>
-    <li><%= link_to post.title, post_path(post) %> - <%= post.date %></li>
-  <% end %>
-</ul>
+<% if @posts.any? %>
 
-<p>
-  <%= link_to "Add a new Blog Post", new_post_path %>
-</p>
+  <h3>All Posts:</h3>
+
+  <%= render @posts.reverse %>
+
+<% else %>
+
+  <h3>No posts exist yet. Become the first user to post!</h3>
+
+<% end %>
