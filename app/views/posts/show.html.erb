@@ -1,9 +1,7 @@
 <% content_for(:title, "Post | Blogger") %>
 
 <h1><%= @post.title %></h1>
-
 <h4><%= @post.date %></h4>
-
 <h5><%= @post.content %></h5>
 
 <% if @post.comments.any? %>
@@ -23,12 +21,16 @@
   <p>There are no comments on this blog post.</p>
 <% end %>
 
-<p>
-  <%= link_to "Comment on this Blogger's post", new_post_comment_path(@post) %>
-</p>
+<% if user_signed_in? %>
+  <p><%= link_to "Comment on this Blogger's post", new_post_comment_path(@post) %></p>
+<% end %>
 
-<p><%= link_to "Edit", edit_post_path(@post) %></p>
-<p><%= link_to "Delete", post_path(@post),
-                        :data => {:confirm => "Delete Post?",
-                                  :method => "delete"} %></p>
-<p><%= link_to "Return to your Homepage", posts_path %></p>
+<% if (user_signed_in?) && (current_user.id == @post.user_id) %>
+  <p><%= link_to "Edit your post", edit_post_path(@post) %></p>
+  <p><%= link_to "Delete this post", post_path(@post),
+                          :data => {:confirm => "Delete Post?",
+                                    :method => "delete"} %></p>
+  <p><%= link_to "Return to your Homepage", user_path(@post.user) %></p>
+<% else %>
+  <p><%= link_to "Return Home", posts_path %></p>
+<% end %>
