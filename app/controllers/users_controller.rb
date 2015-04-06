@@ -6,8 +6,6 @@ class UsersController < ApplicationController
 
   def destroy
     @user = User.find(current_user)
-    @user.posts.destroy
-    @user.comments.destroy
     @user.destroy
     redirect_to '/'
   end

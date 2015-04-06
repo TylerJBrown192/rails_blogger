@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :posts
-  has_many :comments
+  has_many :posts,    dependent: :destroy
+  has_many :comments, dependent: :destroy
+  # The above 'dependent association' will destroy all Posts and Comments that
+  # are tied to a User when that one User is destroyed.
 end
